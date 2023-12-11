@@ -10,7 +10,9 @@ import { verifyToken } from "./middleware/auth";
 // import use
 dotenv.config();
 
-const allowedOrigins = ["http://127.0.0.1:5173", "http://localhost:5173"];
+const allowedOrigins = ["http://127.0.0.1:5173",
+  "http://localhost:5173",
+  "https://northfield-frontend-khalifaumar308.vercel.app/"];
 
 const credentials:RequestHandler = (req, res, next) => {
   const origin = req.headers.origin;
