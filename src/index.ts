@@ -7,7 +7,6 @@ import cookieParser from "cookie-parser"
 import { RequestHandler } from "express";
 import { userRouter } from "./routes/userRoutes";
 import { verifyToken } from "./middleware/auth";
-import 
 // import use
 dotenv.config();
 
