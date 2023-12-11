@@ -345,12 +345,12 @@ const MyDocument = ({ tData }: PDFProps) => {
               position: "relative",
             }}
           >
-            {/* <Image
+            <Image
               style={{ width: "100px" }}
               src={
-                JSON.parse(sessionStorage.getItem("teacherDetails")).signature
+               details.signature
               }
-            /> */}
+            />
             <Text
               style={{
                 position: "absolute",
