@@ -18,25 +18,24 @@ const allowedOrigins = ["http://127.0.0.1:5173",
 ];
 
 const credentials = (req, res, next) => {
-  const origin = req.headers.origin;
-  console.log(origin)
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", 'https://northfield-frontend-khalifaumar308.vercel.app/');
-  res.header("access-control-allow-origin", 'https://northfield-frontend-khalifaumar308.vercel.app/');
-  next();
-};
-
-const corsOptions:cors.CorsOptions = {
-  origin: (origin, callback) => {
-    console.log(origin)
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Credentials', true);
     }
-  },
-  optionsSuccessStatus: 200,
-};
+    next();
+}
+
+
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    optionsSuccessStatus: 200
+}
 
 const app = express();
 app.use(express.json());
