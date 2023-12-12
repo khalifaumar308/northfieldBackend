@@ -17,14 +17,14 @@ const allowedOrigins = ["http://127.0.0.1:5173",
   "https://northfield-frontend.vercel.app",
 ];
 
-const credentials = (req, res, next) => {
-  const origin = req.headers.origin;
-  console.log(origin)
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Allow-Origin", true);
-  res.header("access-control-allow-origin", true);
-  next();
-};
+// const credentials = (req, res, next) => {
+//   const origin = req.headers.origin;
+//   console.log(origin)
+//   res.header("Access-Control-Allow-Credentials", true);
+//   res.header("Access-Control-Allow-Origin", true);
+//   res.header("access-control-allow-origin", true);
+//   next();
+// };
 
 // const corsOptions:cors.CorsOptions = {
 //   origin: (origin, callback) => {
@@ -40,7 +40,7 @@ const credentials = (req, res, next) => {
 
 const app = express();
 app.use(express.json());
-app.use(credentials);
+// app.use(credentials);
 // app.use(credentials);
 // app.use(cors<Request>(corsOptions));
 // app.use(cors());
