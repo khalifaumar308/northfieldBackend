@@ -35,21 +35,6 @@ const corsOptions:cors.CorsOptions = {
   optionsSuccessStatus: 200,
 };
 
-
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   optionsSuccessStatus: 200,
-// };
-
-// const options: cors.CorsOptions = {
-//   origin: allowedOrigins
-// };
 const app = express();
 // app.use(credentials);
 app.use(credentials);
