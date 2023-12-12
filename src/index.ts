@@ -43,9 +43,10 @@ app.use(credentials);
 // app.use(credentials);
 // app.use(cors<Request>(corsOptions));
 // app.use(cors());
-app.use(cors({
-  origin: "https://northfield-frontend.vercel.app/"}
-))
+app.use(cors())
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+})
 app.options('*', cors())
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
