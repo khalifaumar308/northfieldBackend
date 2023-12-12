@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser"
 import { RequestHandler } from "express";
 import { userRouter } from "./routes/userRoutes";
 import { verifyToken } from "./middleware/auth";
+import { Request } from "express";
 // import use
 dotenv.config();
 
@@ -14,6 +15,7 @@ const allowedOrigins = ["http://127.0.0.1:5173",
   "http://localhost:5173",
   "https://northfield-frontend-khalifaumar308.vercel.app/",
   "https://northfield-frontend-khalifaumar308.vercel.app",
+  "https://northfield-frontend.vercel.app/",
 ];
 
 const credentials = (req, res, next) => {
@@ -25,6 +27,7 @@ const credentials = (req, res, next) => {
 
 const corsOptions:cors.CorsOptions = {
   origin: (origin, callback) => {
+    console.log(origin)
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
@@ -35,11 +38,11 @@ const corsOptions:cors.CorsOptions = {
 };
 
 const app = express();
-// app.use(credentials);
-// app.use(credentials);
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(credentials);
+// app.use(credentials);
+app.use(cors<Request>(corsOptions));
+// app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 mongoose
