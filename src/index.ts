@@ -11,37 +11,37 @@ import { Request } from "express";
 // import use
 dotenv.config();
 
-const allowedOrigins = ["http://127.0.0.1:5173",
-  "http://localhost:5173",
-  "https://northfield-frontend.vercel.app/",
-  "https://northfield-frontend.vercel.app",
-];
+// const allowedOrigins = ["http://127.0.0.1:5173",
+//   "http://localhost:5173",
+//   "https://northfield-frontend.vercel.app/",
+//   "https://northfield-frontend.vercel.app",
+// ];
 
-const credentials = (req, res, next) => {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Credentials', true);
-    }
-    next();
-}
+// const credentials = (req, res, next) => {
+//     const origin = req.headers.origin;
+//     if (allowedOrigins.includes(origin)) {
+//         res.header('Access-Control-Allow-Credentials', true);
+//     }
+//     next();
+// }
 
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    optionsSuccessStatus: 200
-}
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//             callback(null, true)
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     optionsSuccessStatus: 200
+// }
 
 const app = express();
 app.use(express.json());
-app.use(credentials);
 // app.use(credentials);
-app.use(cors<Request>(corsOptions));
+// app.use(credentials);
+app.use(cors());
 // app.use(cors());
 // app.use(cors())
 // app.use(function (req, res, next) {
