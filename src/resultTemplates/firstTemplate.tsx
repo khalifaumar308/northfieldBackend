@@ -40,6 +40,7 @@ const morfData = (data:topics[]) => {
 // Create Document Component
 const MyDocument = ({ tData }: PDFProps) => {
   // Create styles
+  const date = new Date()
   const styles = StyleSheet.create({
     page: { padding: 10, fontFamily: "Courier", fontStyle: "none" },
     section: { textAlign: "center", margin: 30 },
@@ -217,8 +218,8 @@ const MyDocument = ({ tData }: PDFProps) => {
             <Text>
               Teacher: <Text>{details.teacher}</Text>
             </Text>
-            <Text>Date: 29/07/20</Text>
-            <Text>Attendance: 12</Text>
+            <Text>Date: {`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</Text>
+            <Text>Attendance: {details.absent}</Text>
             <Text>(Absent: {details.absent})</Text>
           </View>
         </View>
@@ -327,7 +328,7 @@ const MyDocument = ({ tData }: PDFProps) => {
                 JSON.parse(sessionStorage.getItem("teacherDetails")).signature
               }
             /> */}
-            <Text
+            {/* <Text
               style={{
                 position: "absolute",
                 fontSize: "8px",
@@ -335,7 +336,7 @@ const MyDocument = ({ tData }: PDFProps) => {
               }}
             >
               Director&apos;s Signature
-            </Text>
+            </Text> */}
           </View>
           <View
             style={{
