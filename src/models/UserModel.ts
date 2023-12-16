@@ -12,13 +12,27 @@ type user = {
   school: String;
   name: String;
   password: String;
+  signature: String;
   refreshToken: String[];
 }
 
 const userSchema = new Schema<user>({
-  email: String,
-  school: String,
-  name: String,
+  email: {
+    type: String,
+    required: true,
+  },
+  school: {
+    type: String,
+    default:'Northfield Montessori'
+  },
+  name: {
+    type: String,
+    required:true
+  },
+  signature: {
+    type: String,
+    required:true
+  },
   password: String,
   refreshToken: [String],
 })

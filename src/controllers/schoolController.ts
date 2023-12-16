@@ -44,21 +44,12 @@ export const handleLogin: RequestHandler = async (req, res) => {
       : foundUser.refreshToken.filter((rt) => rt !== cookies.jwt);
 
     if (cookies?.jwt) {
-      /* 
-            Scenario added here: 
-                1) User logs in but never uses RT and does not logout 
-                2) RT is stolen
-                3) If 1 & 2, reuse detection is needed to clear all RTs when user logs in
-            */
       const refreshToken = cookies.jwt;
       const foundToken = await UserModel.findOne({ refreshToken }).exec();
 
-      // Detected refresh token reuse!
       if (!foundToken) {
-        // clear out ALL previous refresh tokens
         newRefreshTokenArray = [];
       }
-
       res.clearCookie("jwt", {
         httpOnly: true,
         sameSite: "none",
@@ -79,8 +70,8 @@ export const handleLogin: RequestHandler = async (req, res) => {
     });
 
     // Send authorization roles and access token to user
-    const { email, name, school } = foundUser;
-    res.json({ accessToken, user: { email, name, school } });
+    const { email, name, school, signature } = foundUser;
+    res.json({ accessToken, user: { email, name, school, signature } });
   } else {
     res.sendStatus(401);
   }
@@ -88,7 +79,7 @@ export const handleLogin: RequestHandler = async (req, res) => {
 
 export const handleNewUser:RequestHandler = async (req, res) => {
   res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
-  const { email, pwd, name, school } = req.body;
+  const { email, pwd, name, school, signature } = req.body;
   if (!email || !pwd)
     return res
       .status(400)
@@ -109,7 +100,8 @@ export const handleNewUser:RequestHandler = async (req, res) => {
       email,
       password: hashedPwd,
       name,
-      school
+      school,
+      signature
     });
 
     // if (role === "affiliate") {
