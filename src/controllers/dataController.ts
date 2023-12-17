@@ -9,7 +9,6 @@ export const addData: RequestHandler = async (req, res) => {
 
   try {
     const foundClass = await dataModel.findOne({ class: dclass }).exec();
-    console.log(foundClass)
     if (foundClass) {
       return res
         .status(409)
@@ -32,13 +31,14 @@ export const addData: RequestHandler = async (req, res) => {
 }
 
 export const getData: RequestHandler = async (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
   const cclass = req.query.class || req.params.classs
   const foundData = await dataModel.findOne({ "class": cclass }).exec()
   if (foundData) {
     const data = foundData.data
     return res
       .status(200)
-      .json({data:JSON.parse(data)})
+      .json({data:JSON.parse(data), template:foundData.template})
   }
   return res.status(404).json({msg:"No data found"})
 }
