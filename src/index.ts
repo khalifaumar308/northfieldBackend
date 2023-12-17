@@ -14,10 +14,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(function (req, res, next) {
-  // res.header("Access-Control-Allow-Origin", "*");
-  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
-})
+// app.use(function (req, res, next) {
+//   // res.header("Access-Control-Allow-Origin", "*");
+//   res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+// })
 // app.options("", cors())
 // app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
