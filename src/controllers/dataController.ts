@@ -32,13 +32,13 @@ export const addData: RequestHandler = async (req, res) => {
 }
 
 export const getData: RequestHandler = async (req, res) => {
-  const cclass = req.query || req.params.class
-  const foundData = await dataModel.findOne({ class: cclass }).exec()
+  const cclass = req.query.class || req.params.classs
+  const foundData = await dataModel.findOne({ "class": cclass }).exec()
   if (foundData) {
     const data = foundData.data
     return res
       .status(200)
       .json({data:JSON.parse(data)})
   }
-  return res.status(404)
+  return res.status(404).json({msg:"No data found"})
 }

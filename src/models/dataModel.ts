@@ -8,9 +8,18 @@ export type dataType = {
 }
 
 const dataSchema = new Schema<dataType>({
-  class: String,
-  data: String,
-  template: String
+  class: {
+    type: String,
+    required:true
+  },
+  data: {
+    type: String,
+    required:true
+  },
+  template: {
+    type: String,
+    required:true
+  }
 })
 
 export default mongoose.model('Data', dataSchema);
