@@ -5,7 +5,7 @@ import firstTemplate from "../resultTemplates/firstTemplate";
 import secondTemplate from "../resultTemplates/secondTemplate";
 
 export const studentController: RequestHandler = async (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  // res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
   try {
     const data = req.body
     // console.log(data)

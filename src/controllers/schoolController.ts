@@ -5,7 +5,7 @@ import { RequestHandler } from "express";
 
 
 export const handleLogin: RequestHandler = async (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  // res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
   const cookies = req.cookies;
 
   const { email, pwd } = req.body;
@@ -78,7 +78,7 @@ export const handleLogin: RequestHandler = async (req, res) => {
 };
 
 export const handleNewUser:RequestHandler = async (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  // res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
   const { email, pwd, name, school, signature } = req.body;
   if (!email || !pwd)
     return res
@@ -116,7 +116,7 @@ export const handleNewUser:RequestHandler = async (req, res) => {
 };
 
 export const handleRefreshToken:RequestHandler = async (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  // res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
   const cookies = req.cookies;
   if (!cookies?.jwt) return res.sendStatus(401);
   const refreshToken = cookies.jwt;
