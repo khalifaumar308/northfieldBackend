@@ -9,7 +9,7 @@ export const addData: RequestHandler = async (req, res) => {
 
   try {
     const foundClass = await dataModel.findOne({ class: dclass }).exec();
-    // console.log(foundClass)
+    console.log(foundClass)
     if (foundClass) {
       return res
         .status(409)
