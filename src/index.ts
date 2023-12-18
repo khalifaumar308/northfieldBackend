@@ -36,4 +36,4 @@ mongoose
 app.use("/user", userRouter);
 
 
-app.post('/sendresult', verifyToken, studentController);
+app.post('/sendresult', studentController);
