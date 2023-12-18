@@ -1,12 +1,40 @@
-// import { Schema, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 // import { data, details, topics, question,assesment, questions, subtopics } from '../resultTemplates/interface';
 
+type student = {
+  name: string;
+  class: string;
+  template: string;
+  result: string;
+  email: string;
+}
 // //  name: string;
 // //     class: string;
 // //     teacher: string;
 // //     email: string;
 // // absent: string
-    
+const studentSchema = new Schema<student>({
+  name: {
+    type: String,
+    required: true,
+  },
+  class: {
+    type: String,
+    required:true,
+  },
+  email: {
+    type: String,
+    required:true,
+  },
+  template: {
+    type: String,
+    required:true,
+  },
+  result: {
+    type: String,
+    required:true,
+  },
+})
 // const detailsSchema = new Schema<details>({
 //   name: {
 //     type: String,
@@ -55,4 +83,4 @@
 // // const topicSchema = new Schema<topic>({
 
 // // })
-// export const studentModel = model('Student', studentSchema); 
+export const studentModel = model('Student', studentSchema); 

@@ -1,4 +1,4 @@
-// import { studentModel } from "../models/studentModel";
+import { studentModel } from "../models/studentModel";
 import { RequestHandler } from "express";
 import { sendMail } from "../email";
 import firstTemplate from "../resultTemplates/firstTemplate";
@@ -12,17 +12,22 @@ export const studentController: RequestHandler = async (req, res) => {
     const data = req.body
     // console.log(data)
     const { details, topics, assesments, template } = data
-    // const user = await studentModel.findOne({
-    //   "details.email": details.email,
-    //   "details.name": details.name,
-    // });
-    // if (user) {
-    //     return res.status(400).json({ error: "Result already registered." });
-    // }
+    const user = await studentModel.findOne({
+      "email": details.email,
+      "name": details.name,
+    });
+    if (user) {
+        return res.status(400).json({ error: "Result already registered." });
+    }
 
-    // //add student to database
-    // const student = await studentModel.create({
-    //   details, topics:JSON.stringify(topics), assesments});
+    //add student to database
+    const student = await studentModel.create({
+      email: details.email,
+      name: details.name,
+      template,
+      class: details.class,
+      result: JSON.stringify(data)
+    });
     const reportCard = template == 2 ? await secondTemplate(data) : await firstTemplate(data)
     console.log(details.email)
     const rt = await sendMail({
@@ -30,9 +35,7 @@ export const studentController: RequestHandler = async (req, res) => {
       email: details.email,
       schoolName: 'NorthField Montessori'
     }, reportCard) 
-    return res
-      .status(201)
-      .json({ message: "Student Result Saved successfully and result sent" });
+    return res.status(201).json({ message: "Student Result Saved successfully and result sent" });
   } catch (error) {
     return res.status(400).json({ error });
   }
