@@ -1,4 +1,4 @@
-import { studentModel } from "../models/studentModel";
+// import { studentModel } from "../models/studentModel";
 import { RequestHandler } from "express";
 import { sendMail } from "../email";
 import firstTemplate from "../resultTemplates/firstTemplate";
