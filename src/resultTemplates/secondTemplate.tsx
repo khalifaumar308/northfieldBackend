@@ -241,7 +241,7 @@ const Template2 = ({ template2data }: PDFProps) => {
         </View>
         <View
           style={{
-            borderBottom: "2px solid black",
+            borderBottom: "2px solid red",
             display: "flex",
             flexDirection: "row",
             alignContent: "space-between",
