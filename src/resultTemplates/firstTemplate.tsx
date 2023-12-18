@@ -19,23 +19,23 @@ interface PDFProps {
   tData: data;
 }
 
-const morfData = (data:topics[]) => {
-  const cp = data.map(dt => {
-    const topic = Object.keys(dt)[0]
-    const subtopics = dt[topic].map(stp => {
-      const stpc = Object.keys(stp)[0]
-      let [ques, statuss, notes] = [[], [], []]
-      stp[stpc].map(({ question, status, note }) => {
-        ques.push(question)
-        statuss.push(status)
-        notes.push(note);
-      })
-      return {name:stpc, questions:ques, status:statuss, notes:notes}
-    })
-    return {topic, subtopics}
-  })
-  return cp
-}
+// const morfData = (data:topics[]) => {
+//   const cp = data.map(dt => {
+//     const topic = Object.keys(dt)[0]
+//     const subtopics = dt[topic].map(stp => {
+//       const stpc = Object.keys(stp)[0]
+//       let [ques, statuss, notes] = [[], [], []]
+//       stp[stpc].map(({ question, status, note }) => {
+//         ques.push(question)
+//         statuss.push(status)
+//         notes.push(note);
+//       })
+//       return {name:stpc, questions:ques, status:statuss, notes:notes}
+//     })
+//     return {topic, subtopics}
+//   })
+//   return cp
+// }
 
 // Create Document Component
 const MyDocument = ({ tData }: PDFProps) => {
@@ -45,8 +45,12 @@ const MyDocument = ({ tData }: PDFProps) => {
     page: { padding: 10, fontFamily: "Courier", fontStyle: "none" },
     section: { textAlign: "center", margin: 30 },
   });
-
-  const data = morfData(tData.topics);
+// 
+  // const date = new Date()
+  const today = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
+  // const tData = JSON.parse(sessionStorage.getItem('data'))
+  const data = tData.topics//morfData(tData.topics);
+  // console.log(Data.topics, data)
   const assessment = tData.assesment;
   const details = tData.details
   
@@ -196,7 +200,7 @@ const MyDocument = ({ tData }: PDFProps) => {
               fontWeight: "bold",
             }}
           >
-            <Text>End of the year Assessment: {details.class} Class</Text>
+            <Text>End of First Term Assessment: {details.class} Class</Text>
           </View>
           <View
             style={{
@@ -218,8 +222,7 @@ const MyDocument = ({ tData }: PDFProps) => {
             <Text>
               Teacher: <Text>{details.teacher}</Text>
             </Text>
-            <Text>Date: {`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</Text>
-            <Text>Attendance: {details.absent}</Text>
+            <Text>Date: {today}</Text>
             <Text>(Absent: {details.absent})</Text>
           </View>
         </View>
@@ -236,7 +239,7 @@ const MyDocument = ({ tData }: PDFProps) => {
             }}
           >
             <Text style={{ width: "200px", borderRight: "2px solid black" }}>
-              EFFECTIVE ASSESMENT
+              AFFECTIVE ASSESMENT
             </Text>
             <Text style={{ paddingLeft: "2px" }}>RATING</Text>
           </View>
@@ -256,7 +259,7 @@ const MyDocument = ({ tData }: PDFProps) => {
                     borderRight: "2px solid black",
                   }}
                 >
-                  {asss.assesment}
+                  {asss.assessment}
                 </Text>
                 <Text
                   style={{
@@ -322,36 +325,7 @@ const MyDocument = ({ tData }: PDFProps) => {
               position: "relative",
             }}
           >
-            {/* <Image
-              style={{ width: "100px" }}
-              src={
-                JSON.parse(sessionStorage.getItem("teacherDetails")).signature
-              }
-            /> */}
-            {/* <Text
-              style={{
-                position: "absolute",
-                fontSize: "8px",
-                bottom: "-15px",
-              }}
-            >
-              Director&apos;s Signature
-            </Text> */}
-          </View>
-          <View
-            style={{
-              padding: "4px",
-              borderBottom: "2px solid black",
-              width: "110px",
-              position: "relative",
-            }}
-          >
-            <Image
-              style={{ width: "100px" }}
-              src={
-               details.signature
-              }
-            />
+            <Image style={{ width: "100px" }} src={details.signature} />
             <Text
               style={{
                 position: "absolute",

@@ -9,7 +9,7 @@ export type subtopics = Record<string, questions>;
 export type topics = Record<string, subtopics[]>;
 // type topics = subtopics[]
 export type assesment = {
-  assesment: string;
+  assessment: string;
   rating: string;
 }
 
@@ -53,5 +53,5 @@ export interface data2 {
   details: details;
   subjects: subjects;
   specailAreas: specialAreas;
-  affectiveAssesment: affectiveAssesment;
+  affectiveAssesment: [{ assessment: string; rating: string; }];
 }

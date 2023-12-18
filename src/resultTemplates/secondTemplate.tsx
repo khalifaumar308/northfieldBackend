@@ -164,7 +164,7 @@ const Template2 = ({ template2data }: PDFProps) => {
 
   return (
     <Document title="Northfield Montessori">
-      <Page size="A4" style={{ padding: "8px" }}>
+      <Page size="A4" style={{ padding: "8px", position: "relative" }}>
         <View
           style={{
             padding: "0 15%",
@@ -381,7 +381,7 @@ const Template2 = ({ template2data }: PDFProps) => {
             marginTop: "20px",
             display: "flex",
             flexDirection: "row",
-            marginLeft:'15px'
+            marginLeft: "15px",
           }}
         >
           <View
@@ -504,16 +504,16 @@ const Template2 = ({ template2data }: PDFProps) => {
                 backgroundColor: "gray",
                 border: "2px solid black",
                 fontSize: "10px",
-                display: 'flex',
-                flexDirection: 'row',
-                padding:'3px'
+                display: "flex",
+                flexDirection: "row",
+                padding: "3px",
               }}
             >
-              <Text style={{width:'150px'}}>AFFECTIVE ASSESMENT</Text>
+              <Text style={{ width: "150px" }}>AFFECTIVE ASSESMENT</Text>
               <Text>RATING</Text>
             </View>
-            {
-              Object.entries(affectiveAssesment).map(([ass, rating], id) => {
+            {affectiveAssesment.map(
+              ({ assessment, rating }, id) => {
                 return (
                   <View
                     style={{
@@ -534,7 +534,7 @@ const Template2 = ({ template2data }: PDFProps) => {
                         padding: "3px",
                       }}
                     >
-                      {ass}
+                      {assessment}
                     </Text>
                     <Text
                       style={{
@@ -545,19 +545,21 @@ const Template2 = ({ template2data }: PDFProps) => {
                     </Text>
                   </View>
                 );
-              })
-            }
+              }
+            )}
           </View>
         </View>
-        <View style={{
-          borderBottom: '2px solid black',
-          width: '100%',
-          marginTop: '8px',
-          padding: '3px',
-          fontSize: '10px',
-          flexDirection:'row'
-        }}>
-          <Text style={{ marginRight: '20px' }}>S - Stisfactory</Text>
+        <View
+          style={{
+            borderBottom: "2px solid black",
+            width: "100%",
+            marginTop: "8px",
+            padding: "3px",
+            fontSize: "10px",
+            flexDirection: "row",
+          }}
+        >
+          <Text style={{ marginRight: "20px" }}>S - Stisfactory</Text>
           <Text>N - Needs Improvement</Text>
         </View>
         <View style={{ marginTop: "50px" }}>
@@ -572,7 +574,7 @@ const Template2 = ({ template2data }: PDFProps) => {
             <Image
               style={{ width: "100px" }}
               src={
-               details.signature
+                details.signature
               }
             />
             <Text style={{

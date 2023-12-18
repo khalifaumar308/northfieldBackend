@@ -3,7 +3,9 @@ import { dataType } from "../models/dataModel";
 import { RequestHandler } from "express";
 
 export const addData: RequestHandler = async (req, res) => {
+  // res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+
   const data = req.body
   const dclass = data["class"]
 
@@ -32,7 +34,9 @@ export const addData: RequestHandler = async (req, res) => {
 
 export const getData: RequestHandler = async (req, res) => {
   res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  // res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
   const cclass = req.query.class || req.params.classs
+  console.log(cclass, 'called')
   const foundData = await dataModel.findOne({ "class": cclass }).exec()
   if (foundData) {
     const data = foundData.data

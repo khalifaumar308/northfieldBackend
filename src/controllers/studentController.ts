@@ -5,7 +5,9 @@ import firstTemplate from "../resultTemplates/firstTemplate";
 import secondTemplate from "../resultTemplates/secondTemplate";
 
 export const studentController: RequestHandler = async (req, res) => {
-  // res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  res.set('Access-Control-Allow-Origin', 'https://northfield-frontend.vercel.app');
+  // res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
+
   try {
     const data = req.body
     // console.log(data)
@@ -21,7 +23,8 @@ export const studentController: RequestHandler = async (req, res) => {
     // //add student to database
     // const student = await studentModel.create({
     //   details, topics:JSON.stringify(topics), assesments});
-    const reportCard = template==2?await secondTemplate(data): await firstTemplate(data)
+    const reportCard = template == 2 ? await secondTemplate(data) : await firstTemplate(data)
+    console.log(details.email)
     const rt = await sendMail({
       name: details.name,
       email: details.email,
