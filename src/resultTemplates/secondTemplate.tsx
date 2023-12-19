@@ -23,7 +23,7 @@ const Template2 = ({ template2data }: PDFProps) => {
   const specailAreasEntries = Object.entries(specailAreas)
   const scores = subjectEntries.map(([subject, scores],id) => {
     const { CA1, CA2, Proj, exam, average, comment } = scores;
-    const total = CA1 + CA2 + Proj + exam;
+    const total = Number(CA1) + Number(CA2) + Number(Proj) + Number(exam);
     return (
       <View
         style={{
